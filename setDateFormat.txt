@@ -1,0 +1,18 @@
+Sub Macro1()
+    Dim MyPath$, MyName$
+    MyPath = ThisWorkbook.Path & "\"
+    MyName = Dir(MyPath & "*.xlsx")
+    Do While MyName <> ""
+    If MyName <> ThisWorkbook.Name Then
+    Workbooks.Open MyPath & MyName
+    ActiveWorkbook.Sheets(1).Range("C:C").NumberFormatLocal = "mm/dd/yyyy"
+    ActiveWorkbook.Sheets(1).Range("F:F").NumberFormatLocal = "mm/dd/yyyy"
+    ActiveWorkbook.Sheets(1).Range("H:H").NumberFormatLocal = "mm/dd/yyyy"
+ActiveWorkbook.Sheets(1).Range("I:I").WrapText = True
+    ActiveWorkbook.RemovePersonalInformation = False
+    ActiveWorkbook.Save
+    ActiveWorkbook.Close
+    End If
+    MyName = Dir
+    Loop
+End Sub
